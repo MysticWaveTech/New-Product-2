@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Teleportation Lattice Animation</title>
+<style>
+  body {
+    background: #0a0a0a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .spire-axis {
+    width: 6px;
+    height: 300px;
+    background: linear-gradient(to top, #00ffff, #00ff99);
+    position: relative;
+    animation: pulse 2s infinite alternate;
+  }
+
+  @keyframes pulse {
+    0% { transform: scaleY(1); opacity: 0.5; }
+    50% { transform: scaleY(1.05); opacity: 1; }
+    100% { transform: scaleY(1); opacity: 0.5; }
+  }
+
+  .echoform-lattice {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+  }
+
+  .node {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #ff00ff;
+    border-radius: 50%;
+    transform-origin: center;
+    animation: latticeExpand 4s infinite alternate;
+  }
+
+  @keyframes latticeExpand {
+    0% { transform: scale(0); opacity: 0; }
+    50% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(0); opacity: 0; }
+  }
+
+  .micro-phase {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #ffff00;
+    border-radius: 50%;
+    animation: foldPulse 4s infinite;
+  }
+
+  @keyframes foldPulse {
+    0% { transform: scale(0.5) translate(0,0); opacity: 0.3; }
+    25% { transform: scale(1) translate(20px,-20px); opacity: 1; }
+    50% { transform: scale(0.5) translate(-20px,20px); opacity: 0.5; }
+    75% { transform: scale(1) translate(20px,20px); opacity: 1; }
+    100% { transform: scale(0.5) translate(0,0); opacity: 0.3; }
+  }
+
+  /* Spiral fractal motif */
+  .spiral-node {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #00ffff;
+    animation: spiral 6s linear infinite;
+  }
+
+  @keyframes spiral {
+    0% { transform: rotate(0deg) translateX(0) scale(0); opacity: 0.2; }
+    50% { transform: rotate(180deg) translateX(80px) scale(1); opacity: 1; }
+    100% { transform: rotate(360deg) translateX(0) scale(0); opacity: 0.2; }
+  }
+</style>
+</head>
+<body>
+
+<div class="spire-axis"></div>
+
+<div class="echoform-lattice">
+  <!-- Nodes representing the Echoform lattice -->
+  <div class="node" style="top:-40px; left:-40px;"></div>
+  <div class="node" style="top:-40px; left:40px;"></div>
+  <div class="node" style="top:40px; left:-40px;"></div>
+  <div class="node" style="top:40px; left:40px;"></div>
+
+  <!-- Micro-phase folding nodes -->
+  <div class="micro-phase" style="top:-20px; left:0;"></div>
+  <div class="micro-phase" style="top:20px; left:0;"></div>
+  <div class="micro-phase" style="top:0; left:-20px;"></div>
+  <div class="micro-phase" style="top:0; left:20px;"></div>
+
+  <!-- Spiral fractal nodes -->
+  <div class="spiral-node" style="top:0; left:0;"></div>
+  <div class="spiral-node" style="top:0; left:0;"></div>
+  <div class="spiral-node" style="top:0; left:0;"></div>
+</div>
+
+</body>
+</html>

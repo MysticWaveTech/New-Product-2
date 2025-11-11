@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ex Nihilo — Recursive Seed Bloom</title>
+<style>
+  body {
+    background: #111;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .seed {
+    position: relative;
+    width: 8px;
+    height: 8px;
+    background: #fff;
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  .node {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #0ff;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    animation: bloom 4s ease-out forwards;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.4); opacity: 0.7; }
+  }
+
+  @keyframes bloom {
+    0% { transform: translate(-50%, -50%) scale(0); opacity: 1; }
+    70% { transform: translate(var(--x), var(--y)) scale(1.2); opacity: 1; }
+    100% { transform: translate(var(--x), var(--y)) scale(1); opacity: 0.9; }
+  }
+</style>
+</head>
+<body>
+<div class="seed"></div>
+
+<script>
+  const seed = document.querySelector('.seed');
+
+  // Parameters
+  const nodes = 24; // fractal node points
+  const radius = 80;
+
+  for (let i = 0; i < nodes; i++) {
+    const node = document.createElement('div');
+    node.className = 'node';
+
+    // Recursive fractal-like positioning
+    const angle = (i / nodes) * Math.PI * 2;
+    const r = radius * Math.pow(Math.random(), 0.5); // randomized layering
+    node.style.setProperty('--x', `${r * Math.cos(angle)}px`);
+    node.style.setProperty('--y', `${r * Math.sin(angle)}px`);
+
+    // stagger animation slightly
+    node.style.animationDelay = `${i * 0.1}s`;
+
+    seed.appendChild(node);
+  }
+</script>
+</body>
+</html>

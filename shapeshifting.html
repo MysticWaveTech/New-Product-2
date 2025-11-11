@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shapeshifting Phase Mesh</title>
+<style>
+body {margin:0; display:flex; justify-content:center; align-items:center; height:100vh; background:#111;}
+.mesh {position:relative; width:200px; height:400px;}
+.node {position:absolute; width:12px; height:12px; background:rgba(0,200,255,0.5); border-radius:50%; transform-origin:center;}
+.node::after {content:''; position:absolute; width:100%; height:100%; border-radius:50%; background:rgba(0,200,255,0.2); animation:wave 3s ease-in-out infinite alternate;}
+@keyframes wave {
+  0% {transform:scale(1); opacity:0.5;}
+  50% {transform:scale(1.8); opacity:0.9;}
+  100% {transform:scale(1); opacity:0.5;}
+}
+.node:nth-child(1){top:0; left:50%; animation-delay:0s;}
+.node:nth-child(2){top:50px; left:40%; animation-delay:0.2s;}
+.node:nth-child(3){top:100px; left:60%; animation-delay:0.4s;}
+.node:nth-child(4){top:150px; left:45%; animation-delay:0.6s;}
+.node:nth-child(5){top:200px; left:55%; animation-delay:0.8s;}
+.node:nth-child(6){top:250px; left:50%; animation-delay:1s;}
+.node:nth-child(7){top:300px; left:40%; animation-delay:1.2s;}
+.node:nth-child(8){top:350px; left:60%; animation-delay:1.4s;}
+.mesh::before {
+  content:''; position:absolute; top:0; left:0; width:100%; height:100%; background:linear-gradient(45deg, rgba(0,200,255,0.1), transparent); mix-blend-mode:overlay;
+  animation:flow 5s linear infinite;
+}
+@keyframes flow {
+  0% {transform:translate(0,0);}
+  50% {transform:translate(10px,10px);}
+  100% {transform:translate(0,0);}
+}
+</style>
+</head>
+<body>
+<div class="mesh">
+  <div class="node"></div>
+  <div class="node"></div>
+  <div class="node"></div>
+  <div class="node"></div>
+  <div class="node"></div>
+  <div class="node"></div>
+  <div class="node"></div>
+  <div class="node"></div>
+</div>
+</body>
+</html>
